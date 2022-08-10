@@ -1,13 +1,9 @@
 <?php
 
-function dd($input){
-    var_dump($input);
-    die();
-}
-
 $mainPosition = __DIR__;
 
-require("{$mainPosition}\bootstrap\Env.php");
+require_once("{$mainPosition}\bootstrap\Env.php");
+require_once("{$mainPosition}\helper\help.php");
 
-$env = new Env();
-dd($env);
+Env::execute();
+dd(env("DB_HOST"));
