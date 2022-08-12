@@ -1,6 +1,8 @@
 <?php
 
-class Env{
+namespace Bootstrap;
+
+class Env {
 
     public static function execute(){
         $contentOfEnvFile = file_get_contents(__DIR__."\..\.env");
