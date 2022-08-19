@@ -1,6 +1,6 @@
 <?php
 
-namespace App\FrameworkTools\Implementations\FactoryMethods;
+namespace App\FrameworkTools\Implementation\FactoryMethods;
 
 trait BreakStringInVars {
 
@@ -11,15 +11,20 @@ trait BreakStringInVars {
             return;
         }
 
-        $stringWithVars = $urlAndVar[1];
+        $stringWithVars = $urlAndVars[1];
 
         $arrayWithVars = explode("&",$stringWithVars);
 
-        $varsOfUrl = array_map(function($element){ 
-            return explode("=",$element);
+        return array_map(function($element){
+            $nameAndValue = explode("=",$element);
+
+            return[
+                $nameAndValue[0] => $nameAndValue[1]
+                //"name" => $nameAndValue[0],
+                //"value" => $nameAndValue[1]
+            ];
         },$arrayWithVars);
 
         DD($varsOfUrl);
     }
-
 }
