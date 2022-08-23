@@ -19,9 +19,8 @@ trait BreakStringInVars {
             $nameAndValue = explode("=",$element);
 
             return[
-                $nameAndValue[0] => $nameAndValue[1]
-                //"name" => $nameAndValue[0],
-                //"value" => $nameAndValue[1]
+                "name" => $nameAndValue[0],
+                "value" => $nameAndValue[1]
             ];
         },$arrayWithVars);
 
