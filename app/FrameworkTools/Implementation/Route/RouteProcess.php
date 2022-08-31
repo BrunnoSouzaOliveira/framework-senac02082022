@@ -19,6 +19,13 @@ class RouteProcess{
                         return (new HelloWorldController)->execute();
                     break;
                 }
+            case 'POST':
+                switch ($processServerElements->getRoute()){
+
+                    case '/hello-rota':
+                        return (new HelloWorldController)->execute();
+                    break;
+                }
         }
     }
 }
