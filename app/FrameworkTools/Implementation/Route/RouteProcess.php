@@ -4,28 +4,29 @@ namespace App\FrameworkTools\Implementation\Route;
 
 use App\FrameworkTools\ProcessServerElements;
 use App\Controllers\HelloWorldController;
+use App\Controllers\TrainQueryController;
 
-class RouteProcess{
+class RouteProcess {
 
-    public static function execute(){
+    public static function execute() {
         $processServerElements = ProcessServerElements::start();
         $routeArray = [];
 
-        switch($processServerElements->getVerb()){
+        switch ($processServerElements->getVerb()) {
             case 'GET':
-                switch ($processServerElements->getRoute()){
+
+                switch ($processServerElements->getRoute()) {
 
                     case '/hello-world':
                         return (new HelloWorldController)->execute();
                     break;
-                }
-            case 'POST':
-                switch ($processServerElements->getRoute()){
 
-                    case '/hello-rota':
-                        return (new HelloWorldController)->execute();
+                    case '/train-query':
+                        return (new TrainQueryController)->execute();
                     break;
                 }
         }
+
     }
+
 }
