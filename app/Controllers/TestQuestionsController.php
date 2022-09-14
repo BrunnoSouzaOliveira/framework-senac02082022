@@ -171,7 +171,7 @@ class TestQuestionsController extends AbstractControllers{
         $databaseConnection = DatabaseConnection::start()->getPDO();
 
         $users = $databaseConnection
-                ->query("SELECT * FROM cars WHERE id_car IN ( SELECT sells.id_car FROM sells WHERE sells.id_buyer = (SELECT buyer.id_buyer FROM buyer WHERE buyer.id_buyer = '{$valueOfVariable}'));")
+                ->query("SELECT * FROM car WHERE car.id_car IN ( SELECT sells.id_car FROM sells WHERE sells.id_buyer = (SELECT buyer.id_buyer FROM buyer WHERE buyer.id_buyer = '{$valueOfVariable}'));")
                 ->fetchAll();
 
         view($users);
