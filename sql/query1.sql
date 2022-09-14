@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS car;
-CREATE DATABASE car;
+DROP DATABASE IF EXISTS frameworksenac;
+CREATE DATABASE frameworksenac;
 
-USE car;
+USE frameworksenac;
 
 DROP TABLE IF EXISTS sells;
 DROP TABLE IF EXISTS buyer;
@@ -10,13 +10,13 @@ DROP TABLE IF EXISTS car;
 
 CREATE TABLE car (
     id_car INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
+    name_car VARCHAR(255) NOT NULL,
     car_model VARCHAR(255) NOT NULL,
     year VARCHAR(4) NOT NULL,
     motorization FLOAT NOT NULL
 );
 
-INSERT INTO car (name, car_model, year, motorization) VALUES 
+INSERT INTO car (name_car, car_model, year, motorization) VALUES 
 ('gol','volkswagen',1998,1.8),
 ('chevet','chevrolet',1995,1.8),
 ('opala','chevrolet',1989,4.2),
@@ -26,11 +26,11 @@ INSERT INTO car (name, car_model, year, motorization) VALUES
 
 CREATE TABLE seller (
     id_seller INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name       VARCHAR(255) NOT NULL,
+    name_seller       VARCHAR(255) NOT NULL,
     last_name  VARCHAR(255) NOT NULL
 );
 
-INSERT INTO seller (name, last_name) VALUES
+INSERT INTO seller (name_seller, last_name) VALUES
 ('Pedro','da Silva'),
 ('Joao','de Lima');
 
@@ -38,11 +38,11 @@ INSERT INTO seller (name, last_name) VALUES
 
 CREATE TABLE buyer (
     id_buyer   INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name       VARCHAR(255) NOT NULL,
+    name_buyer       VARCHAR(255) NOT NULL,
     last_name  VARCHAR(255) NOT NULL 
 );
 
-INSERT INTO buyer (name, last_name) VALUES
+INSERT INTO buyer (name_buyer, last_name) VALUES
 ('Rafael','da Silva'),
 ('Jorge','de Lima');
 

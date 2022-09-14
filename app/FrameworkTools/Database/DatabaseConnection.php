@@ -7,6 +7,7 @@ class DatabaseConnection {
     private static $instance;
 
     private $pdo;
+    private $prova;
 
     private function __construct() {
         
