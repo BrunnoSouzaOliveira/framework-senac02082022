@@ -10,19 +10,42 @@ class InsertDataController extends AbstractControllers{
     public function exec(){
         $pdo = DatabaseConnection::start()->getPDO();
         $params = $this->processServerElements->getInputJSONData();
+        $response = ['success' => true];
+        $attrName;
 
-        $query = "INSERT INTO user (name,last_name,age) VALUES (:name,:last_name,:age)";
+        try{
+            if(!$params['name']){
+                $attrName = 'name';
+                throw new \Exception('the name is send in request');
+            }
+    
+            if(!$params['last_name']){
+                $attrName = 'last_name';
+                throw new \Exception('the last_name is send in request');
+            }
+    
+            if(!$params['age']){
+                $attrName = 'age';
+                throw new \Exception('the age is send in request');
+            }
+    
+            $query = "INSERT INTO user (name,last_name,age) VALUES (:name,:last_name,:age)";
+    
+            $statement = $pdo->prepare($query);
+    
+            $statement->execute([
+                ':name' => $params["name"],
+                ':last_name' => $params["lastName"],
+                ':age' => $params["age"]
+            ]);
+        }catch(\Exception $e){
+            $response = [
+                'success' => false,
+                'message' => $e->getMessage(),
+                'missingAttribute' => $attrName
+            ];
+        }
 
-        $statement = $pdo->prepare($query);
-
-        $statement->execute([
-            ':name' => $params["name"],
-            ':last_name' => $params["lastName"],
-            ':age' => $params["age"]
-        ]);
-
-        view([
-            'success'=> true
-        ]);
+        view($response);
     }
 }
