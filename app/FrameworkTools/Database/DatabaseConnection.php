@@ -9,7 +9,7 @@ class DatabaseConnection {
     private $pdo;
 
     private function __construct() {
-        
+
         $database = env('DB_DATABASE');
         $user = env('DB_USER');
         $password = env('DB_PASSWORD');
@@ -18,8 +18,8 @@ class DatabaseConnection {
         
 
         $this->pdo = new \PDO(
-            "mysql:host=localhost;dbname=frameworksenac;port=3306;", 
-            "root", 
+            "mysql:host=localhost;dbname=frameworksenac;port=3306;",
+            "root",
             ""
         );
     }
