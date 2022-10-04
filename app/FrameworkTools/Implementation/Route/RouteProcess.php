@@ -7,6 +7,7 @@ use App\Controllers\HelloWorldController;
 use App\Controllers\TrainQueryController;
 use App\Controllers\TestQuestionsController;
 use App\Controllers\InsertDataController;
+use App\Controllers\InsertDataControllerCar;
 
 class RouteProcess {
 
@@ -77,6 +78,9 @@ class RouteProcess {
                 switch ($processServerElements->getRoute()) {
                     case '/insert-data':
                         return (new InsertDataController)->exec();
+                    break;
+                    case '/carinsert':
+                        return (new InsertDataControllerCar)->insereCarro();
                     break;
                 }
             break;
