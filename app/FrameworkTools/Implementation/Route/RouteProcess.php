@@ -8,6 +8,7 @@ use App\Controllers\TrainQueryController;
 use App\Controllers\TestQuestionsController;
 use App\Controllers\InsertDataController;
 use App\Controllers\InsertDataControllerCar;
+use App\Controllers\InsertInterfaceDataController;
 
 class RouteProcess {
 
@@ -81,6 +82,9 @@ class RouteProcess {
                     break;
                     case '/carinsert':
                         return (new InsertDataControllerCar)->insereCarro();
+                    break;
+                    case '/insert-on-interface':
+                        return (new InsertInterfaceDataController)->insertDados();
                     break;
                 }
             break;
