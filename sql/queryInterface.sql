@@ -2,9 +2,12 @@ DROP DATABASE IF EXISTS frameworksenac;
 CREATE DATABASE frameworksenac;
 USE frameworksenac;
 
-CREATE TABLE user(
+CREATE TABLE usuario(
     id_user INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    age INTEGER
+    nomeUsuario VARCHAR(255) NOT NULL,
+    sobrenomeUsuario VARCHAR(255) NOT NULL,
+    idade INTEGER NOT NULL,
+    cpf VARCHAR(255) NOT NULL,
+    celular VARCHAR(255),
+    fixo VARCHAR(255)
 );

@@ -17,12 +17,16 @@ class InsertInterfaceDataController extends AbstractControllers{
 
             $this->verificantionInputVar();
 
-            $query = "INSERT INTO car (carName,model) VALUES (:carName,:model)";
+            $query = "INSERT INTO usuario (nomeUsuario,sobrenomeUsuario,idade,cpf,celular,fixo) VALUES (:nomeUsuario,:sobrenomeUsuario,:idade,:cpf,:celular,:fixo)";
 
             $statement = $this->pdo->prepare($query);
             $statement->execute([
-                ':carName' => $this->params["carName"],
-                ':model' => $this->params["model"]
+                ':nomeUsuario' => $this->params["nomeUsuario"],
+                ':sobrenomeUsuario' => $this->params["sobrenomeUsuario"],
+                ':idade' => $this->params["idade"],
+                ':cpf' => $this->params["cpf"],
+                ':celular' => $this->params["celular"],
+                ':fixo' => $this->params["fixo"]
             ]);
 
         }catch(\Exception $e){
@@ -37,14 +41,24 @@ class InsertInterfaceDataController extends AbstractControllers{
     }
 
     private function verificantionInputVar(){
-        if(!$this->params['carName']){
-            $this->attrName = 'carName';
-            throw new \Exception('the carName is send in request');
+        if(!$this->params['nomeUsuario']){
+            $this->attrName = 'nomeUsuario';
+            throw new \Exception('the Nome is send in request');
         }
 
-        if(!$this->params['model']){
-            $this->attrName = 'model';
-            throw new \Exception('the model is send in request');
+        if(!$this->params['sobrenomeUsuario']){
+            $this->attrName = 'sobrenomeUsuario';
+            throw new \Exception('the sobrenome is send in request');
+        }
+
+        if(!$this->params['idade']){
+            $this->attrName = 'idade';
+            throw new \Exception('the idade is send in request');
+        }
+
+        if(!$this->params['cpf']){
+            $this->attrName = 'cpf';
+            throw new \Exception('the cpf is send in request');
         }
     }
 }
