@@ -7,7 +7,6 @@ CREATE TABLE usuario(
     nomeUsuario VARCHAR(255) NOT NULL,
     sobrenomeUsuario VARCHAR(255) NOT NULL,
     idade INTEGER NOT NULL,
-    cpf VARCHAR(255) NOT NULL,
-    celular VARCHAR(255),
-    fixo VARCHAR(255)
+    email VARCHAR(255) NOT NULL,
+    telefone VARCHAR(11) NOT NULL
 );

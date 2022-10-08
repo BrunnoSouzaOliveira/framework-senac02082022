@@ -17,16 +17,15 @@ class InsertInterfaceDataController extends AbstractControllers{
 
             $this->verificantionInputVar();
 
-            $query = "INSERT INTO usuario (nomeUsuario,sobrenomeUsuario,idade,cpf,celular,fixo) VALUES (:nomeUsuario,:sobrenomeUsuario,:idade,:cpf,:celular,:fixo)";
+            $query = "INSERT INTO usuario (nomeUsuario,sobrenomeUsuario,idade,email,telefone) VALUES (:nomeUsuario,:sobrenomeUsuario,:idade,:email,:telefone)";
 
             $statement = $this->pdo->prepare($query);
             $statement->execute([
                 ':nomeUsuario' => $this->params["nomeUsuario"],
                 ':sobrenomeUsuario' => $this->params["sobrenomeUsuario"],
                 ':idade' => $this->params["idade"],
-                ':cpf' => $this->params["cpf"],
-                ':celular' => $this->params["celular"],
-                ':fixo' => $this->params["fixo"]
+                ':email' => $this->params["email"],
+                ':telefone' => $this->params["telefone"]
             ]);
 
         }catch(\Exception $e){
@@ -56,9 +55,14 @@ class InsertInterfaceDataController extends AbstractControllers{
             throw new \Exception('the idade is send in request');
         }
 
-        if(!$this->params['cpf']){
-            $this->attrName = 'cpf';
-            throw new \Exception('the cpf is send in request');
+        if(!$this->params['email']){
+            $this->attrName = 'email';
+            throw new \Exception('the E-mail is send in request');
+        }
+
+        if(!$this->params['telefone']){
+            $this->attrName = 'telefone';
+            throw new \Exception('the telefone is send in request');
         }
     }
 }
