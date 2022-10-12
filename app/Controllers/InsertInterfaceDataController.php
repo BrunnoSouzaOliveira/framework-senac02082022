@@ -59,10 +59,5 @@ class InsertInterfaceDataController extends AbstractControllers{
             $this->attrName = 'email';
             throw new \Exception('the E-mail is send in request');
         }
-
-        if(!$this->params['telefone']){
-            $this->attrName = 'telefone';
-            throw new \Exception('the telefone is send in request');
-        }
     }
 }

@@ -12,4 +12,4 @@ CREATE TABLE user(
 INSERT INTO user(name,last_name,age) VALUES
 ('Jon', 'San',42),
 ('Joao','Silva',14),
-('Pedro','de Lima',23),
+('Pedro','de Lima',23);
