@@ -5,11 +5,13 @@ namespace App\FrameworkTools\Implementation\Route;
 use App\FrameworkTools\ProcessServerElements;
 use App\FrameworkTools\Implementation\Route\Get;
 use App\FrameworkTools\Implementation\Route\Post;
+use App\FrameworkTools\Implementation\Route\Put;
 
 class RouteProcess {
 
     use Get;
     use Post;
+    use Put;
 
     private static $processServerElements;
 
@@ -17,7 +19,7 @@ class RouteProcess {
         self::$processServerElements = ProcessServerElements::start();
         $routeArray = [];
 
-        switch(self::processServerElements->getVerb()){
+        switch(self::$processServerElements->getVerb()){
             case 'GET':
                 return self::get();
             case 'POST':
