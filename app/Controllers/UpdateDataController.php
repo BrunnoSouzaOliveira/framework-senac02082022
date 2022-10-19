@@ -39,15 +39,61 @@ class UpdateDataController extends AbstractControllers{
 
             $params = $this->processServerElements->getInputJSONData();
 
-            $query = "UPDATE  user SET (name,last_name,age) WHERE id_user = '{$userId}';";
+            if((!$params) || sizeof($params) === 0){
+                $missingAttribute = 'paramsNotExist';
+                throw new \Exception("You have to inform the params attr to update");
+            }
 
-            $statement = $this->pdo->prepare($query);
+            foreach($params as $key => $value){
+                if(!in_array($key,['name','last_name','age'])){
+                    $missingAttribute = 'keyNotAcceptable';
+                    throw new \Exception("The params {$key} is not acceptable");
+                }
+            }
+
+            $updateStructureQuery = '';
+
+            foreach($params as $key => $value){
+                if(!in_array($key,['name','last_name','age'])){
+                    $missingAttribute = "KeyNotAcceptable";
+                    throw new \Exception($key);
+                }
+
+                if($key === 'name'){
+                    $updateStructureQuery .= "name = :name,";
+                }
+
+                if($key === 'last_name'){
+                    $updateStructureQuery .= "last_name = :last_name,";
+                }
+
+                if($key === 'age'){
+                    $updateStructureQuery .= "age = :age,";
+                }
+            }
+
+            $updateStringInArray = str_split($updateStructureQuery);
+
+            array_pop($updateStringInArray);
+
+            $newStringElementsSQL = implode($updateStringInArray);
+            
+            $sql = "UPDATE
+                        user
+                    SET
+                        ($newStringElementsSQL)
+                    WHERE
+                        id_user = :id_user
+                    ";
+            dd($sql);
+            $statement = $this->pdo->prepare($sql);
+
             $statement->execute([
-                ':name' => $this->params["name"],
-                ':last_name' => $this->params["last_name"],
-                ':age' => $this->params["age"]
+                ':name' => $params["name"],
+                ':last_name' => $params["last_name"],
+                ':age' => $params["age"],
+                '>id_user' => $userId
             ]);
-
 
         }catch(\Exception $e){
             $response = [
