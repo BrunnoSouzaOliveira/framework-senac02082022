@@ -5,10 +5,15 @@ namespace App\FrameworkTools\Implementation\Route;
 use App\Controllers\HelloWorldController;
 use App\Controllers\TrainQueryController;
 use App\Controllers\TestQuestionsController;
+use App\Controllers\Brunno;
 
 trait Get{
     private static function get(){
         switch(self::$processServerElements->getRoute()){
+
+            case '/brunno-get':
+                return (new Brunno)->Oliveira1();
+            break;
 
             case '/hello-world':
                 return (new HelloWorldController)->execute();
