@@ -7,15 +7,15 @@ use  App\FrameworkTools\Abstracts\Controllers\AbstractControllers;
 class UpdateDataController extends AbstractControllers{
     public function exec(){
         $missingAttribute;
-        $userId = null;
+        $userId;
         $response = ['success' => true];
 
         try{
             $requestVariables = $this->processServerElements->getVariables();
 
-            if((!$requestVariables) || sizeof($requestVariables) === 0){
+            if((!$requestVariables) || (sizeof($requestVariables) === 0)){
                 $missingAttribute = 'variableIsEmpty';
-                throw new \Exception("You need to insert variables in the url");
+                throw new \Exception("You need to insert variables in url");
             }
 
             foreach($requestVariables as $requestVariable){
@@ -42,13 +42,6 @@ class UpdateDataController extends AbstractControllers{
             if((!$params) || sizeof($params) === 0){
                 $missingAttribute = 'paramsNotExist';
                 throw new \Exception("You have to inform the params attr to update");
-            }
-
-            foreach($params as $key => $value){
-                if(!in_array($key,['name','last_name','age'])){
-                    $missingAttribute = 'keyNotAcceptable';
-                    throw new \Exception("The params {$key} is not acceptable");
-                }
             }
 
             $updateStructureQuery = '';
@@ -81,18 +74,17 @@ class UpdateDataController extends AbstractControllers{
             $sql = "UPDATE
                         user
                     SET
-                        ($newStringElementsSQL)
+                        {$newStringElementsSQL}
                     WHERE
-                        id_user = :id_user
+                        id_user = {$userId};
                     ";
-            dd($sql);
+
             $statement = $this->pdo->prepare($sql);
 
             $statement->execute([
                 ':name' => $params["name"],
                 ':last_name' => $params["last_name"],
-                ':age' => $params["age"],
-                '>id_user' => $userId
+                ':age' => $params["age"]
             ]);
 
         }catch(\Exception $e){
